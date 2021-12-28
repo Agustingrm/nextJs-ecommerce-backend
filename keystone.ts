@@ -12,6 +12,8 @@ import 'dotenv/config';
 import { insertSeedData } from './seed-data';
 import { sendPasswordResetEmail } from './lib/mail';
 import { extendGraphqlSchema } from './mutations';
+import { OrderItem } from './schemas/OrderItem';
+import { Order } from './schemas/Order';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits-tutorial';
@@ -55,11 +57,13 @@ export default withAuth(
       },
     },
     lists: createSchema({
+      // Schema items go in here
       User,
       Product,
       ProductImage,
       CartItem,
-      // Schema items go in here
+      OrderItem,
+      Order,
     }),
     extendGraphqlSchema,
     ui: {
